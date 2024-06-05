@@ -1,0 +1,46 @@
+html {
+  margin: 0px;
+  padding: 0px;
+}
+nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 3vh 5vw 5vw;
+}
+
+.itemContainer {
+  align-items: center;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  max-width: 12vw;
+  max-height: 35vh;
+  justify-content: center;
+  border-radius: 5px;
+  border: solid black 1px;
+  box-shadow: 5px 2px 5px black;
+}
+
+.itemContainer > img {
+  max-width: 80%;
+  max-height: 100%;
+}
+
+.itemInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex: auto;
+}
+
+.count {
+  display: flex;
+  width: 50%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.count > button {
+  height: 20px;
+}

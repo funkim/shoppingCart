@@ -1,18 +1,32 @@
-import PropTypes from "prop-types";
-const App = () => <h1>Our First Test</h1>;
+import { Link, Route, Routes } from "react-router-dom";
+import Homepage from "../routes/homepage";
+import Cart from "../routes/cart";
+import Item from "../routes/item";
+import NotFound from "../routes/errorPage";
+import ShoppingLogo from "../assets/shopping-cart-outline-svgrepo-com.jsx";
+import Home from "../assets/home-icon-silhouette-svgrepo-com.jsx";
 
-export default App;
-
-const RenderName = (props) => {
-  return <div>{props.name}</div>;
-};
-
-RenderName.propTypes = {
-  name: PropTypes.string.isRequired,
-};
-
-RenderName.defaultProps = {
-    name: 'zach',
-};
-
-export RenderName
+export default function App({ items = 0 }) {
+  return (
+    <>
+      <header>
+        <nav>
+          <Link to="/">
+            <Home width="40" height="40" alt="Home" />
+          </Link>
+          <Link to="/cart">
+            <ShoppingLogo width="40" height="40" alt="Cart" />
+          </Link>
+        </nav>
+      </header>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/cart">
+          <Route index element={<Cart />} />
+          <Route path=":id" element={<Item />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+}
