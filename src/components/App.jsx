@@ -1,7 +1,6 @@
 import { Link, Route, Routes } from "react-router-dom";
 import Homepage from "../routes/homepage";
 import Cart from "../routes/cart";
-import Item from "../routes/item";
 import NotFound from "../routes/errorPage";
 import ShoppingLogo from "../assets/shopping-cart-outline-svgrepo-com.jsx";
 import Home from "../assets/home-icon-silhouette-svgrepo-com.jsx";
@@ -23,7 +22,6 @@ export default function App({ items = 0 }) {
         <Route path="/" element={<Homepage />} />
         <Route path="/cart">
           <Route index element={<Cart />} />
-          <Route path=":id" element={<Item />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

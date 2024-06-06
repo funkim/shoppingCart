@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Item from "./item";
+import { Item } from "../components/Items";
 import { useState } from "react";
 
 export default function Cart() {
