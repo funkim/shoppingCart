@@ -1,42 +1,23 @@
-import { Link } from "react-router-dom";
-import { Item } from "../components/Items";
-import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../components/CartContext";
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState([Item]);
+  const { cartItems } = useContext(CartContext);
 
-  const addItemToCart = (item) => {
-    setCartItems((prevItems) => [...prevItems, item]);
-  };
-
-  const exampleItem = {
-    id: 1,
-    title: "Sample Item",
-    description: "This is a sample item",
-    price: "$10",
-    quantity: 1,
-  };
-
-  useState(() => {
-    addItemToCart(exampleItem);
-  }, []);
-  const ShowCart = ({ item }) => {
-    return (
-      <div className="itemInCart">
-        <h2>{item.title}</h2>
-        <p>{item.description}</p>
-        <h3>{item.price}</h3>
-        <p>{item.quantity}</p>
-      </div>
-    );
-  };
-  console.log(cartItems);
   return (
-    <div className="cartContainer">
+    <div>
       <h1>Cart</h1>
-      {cartItems.map((item) => (
-        <ShowCart key={item.id} item={item} />
-      ))}
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty.</p>
+      ) : (
+        <ul>
+          {cartItems.map((item, index) => (
+            <li key={index}>
+              {item.name} - ${item.price}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

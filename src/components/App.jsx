@@ -5,7 +5,7 @@ import NotFound from "../routes/errorPage";
 import ShoppingLogo from "../assets/shopping-cart-outline-svgrepo-com.jsx";
 import Home from "../assets/home-icon-silhouette-svgrepo-com.jsx";
 
-export default function App({ items = 0 }) {
+export default function App() {
   return (
     <>
       <header>

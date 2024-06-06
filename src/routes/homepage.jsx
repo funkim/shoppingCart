@@ -1,9 +1,11 @@
 import { Item } from "../components/Items";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../components/CartContext";
 
 export default function Homepage() {
   const [totalItemCount, setTotalItemCount] = useState(0);
-  const [itemList, setItemList] = useState([{ name: "test", price: "0.00", quantity: 0 }]);
+  const [itemSelection, setItemSelection] = useState([Item]);
+  const { cartItems } = useContext(CartContext);
 
   const incrementTotalCount = () => setTotalItemCount(totalItemCount + 1);
   const decrementTotalCount = () => {
@@ -12,15 +14,11 @@ export default function Homepage() {
     }
   };
 
-  const addToList = (item) => {
-    setItemList((prevItems) => [...prevItems, item]);
-  };
-
   return (
     <div className="homepageContainer">
       <h1>Welcome!</h1>
       <p>Total Items: {totalItemCount}</p>
-      {itemList.map((item, index) => (
+      {itemSelection.map((item, index) => (
         <Item
           name={item.name}
           price={item.price}

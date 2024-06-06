@@ -1,17 +1,31 @@
-import { useState } from "react";
+import Cart from "../routes/cart";
+import { CartContext } from "./CartContext";
+import { useState, useContext } from "react";
 export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", quantity, onIncrement, onDecrement, index }) {
   const [itemCount, setItemCount] = useState(0);
+  const { addItemToCart, removeFromCart } = useContext(CartContext);
+
+  const handleAddToCart = (item) => {
+    addItemToCart(item);
+  };
+
+  const handleRemoveFromCart = (item) => {
+    removeFromCart(item);
+  };
+
   quantity = itemCount;
 
   const incrementCount = () => {
     setItemCount(itemCount + 1);
     onIncrement();
+    handleAddToCart(Item);
   };
 
   const decrementCount = () => {
     if (itemCount > 0) {
       setItemCount(itemCount - 1);
       onDecrement();
+      handleRemoveFromCart(Item);
     }
   };
   return (
