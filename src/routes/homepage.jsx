@@ -19,8 +19,9 @@ export default function Homepage() {
   );
 }
 
-function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", onIncrement, onDecrement }) {
+export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", quantity, onIncrement, onDecrement }) {
   const [itemCount, setItemCount] = useState(0);
+  quantity = itemCount;
 
   const incrementCount = () => {
     setItemCount(itemCount + 1);
@@ -42,7 +43,7 @@ function Item({ name = "Placeholder", price = "0.00", description = "Placeholder
         <p>{price}</p>
       </div>
       <div className="count">
-        <p>{itemCount}</p>
+        <p>{quantity}</p>
         <button onClick={incrementCount}>+</button>
         <button onClick={decrementCount}>-</button>
       </div>
