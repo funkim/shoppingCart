@@ -1,33 +1,20 @@
-import Cart from "../routes/cart";
-import { CartContext } from "./CartContext";
-import { useState, useContext } from "react";
-export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", quantity, onIncrement, onDecrement, index }) {
-  const [itemCount, setItemCount] = useState(0);
-  const { addItemToCart, removeFromCart } = useContext(CartContext);
+import { useContext } from "react";
+import { CartContext } from "../components/CartContext";
 
-  const handleAddToCart = (item) => {
-    addItemToCart(item);
-  };
-
-  const handleRemoveFromCart = (item) => {
-    removeFromCart(item);
-  };
-
-  quantity = itemCount;
+export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", index }) {
+  const { addItemToCart, removeFromCart, cartItems } = useContext(CartContext);
+  const item = cartItems.find((i) => i.name === name) || { quantity: 0 };
 
   const incrementCount = () => {
-    setItemCount(itemCount + 1);
-    onIncrement();
-    handleAddToCart(Item);
+    addItemToCart({ name, price });
   };
 
   const decrementCount = () => {
-    if (itemCount > 0) {
-      setItemCount(itemCount - 1);
-      onDecrement();
-      handleRemoveFromCart(Item);
+    if (item.quantity > 0) {
+      removeFromCart({ name, price });
     }
   };
+
   return (
     <div className="itemContainer" key={index}>
       <img src="https://m.media-amazon.com/images/I/71nVIiWEcgL._AC_SY200_.jpg" alt="item" />
@@ -36,7 +23,7 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
         <p>{price}</p>
       </div>
       <div className="count">
-        <p>{quantity}</p>
+        <p>{item.quantity}</p>
         <button onClick={incrementCount}>+</button>
         <button onClick={decrementCount}>-</button>
       </div>
