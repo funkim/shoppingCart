@@ -17,10 +17,12 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
 
   return (
     <div className="itemContainer" key={index}>
-      <img src={image} alt={name} />
+      <div className="homepageItemImage">
+        <img src={image} alt={name} />
+      </div>
       <div className="itemInfo">
         <h3>{name}</h3>
-        <p>{price}</p>
+        <p>${price}</p>
       </div>
       <div className="count">
         <p>{item.quantity}</p>

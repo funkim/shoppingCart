@@ -25,11 +25,15 @@ export default function Homepage() {
       <h1>Welcome!</h1>
       <p>Total Items: {totalItemCount}</p>
 
-      {itemSelection ? (
-        itemSelection.map((item) => <Item name={item.title} price={item.price} quantity={item.quantity} key={item.id} image={item.image} />)
-      ) : (
-        <p>loading...</p>
-      )}
+      <div className="itemSelection">
+        {itemSelection.length > 2 ? (
+          itemSelection.map((item) => (
+            <Item name={item.title} price={item.price} quantity={item.quantity} key={item.id} image={item.image} description={item.description} />
+          ))
+        ) : (
+          <p>loading...</p>
+        )}
+      </div>
     </div>
   );
 }
