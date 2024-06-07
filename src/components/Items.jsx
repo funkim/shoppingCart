@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../components/CartContext";
 
-export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", index }) {
+export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", image, index }) {
   const { addItemToCart, removeFromCart, cartItems } = useContext(CartContext);
   const item = cartItems.find((i) => i.name === name) || { quantity: 0 };
 
@@ -17,7 +17,7 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
 
   return (
     <div className="itemContainer" key={index}>
-      <img src="https://m.media-amazon.com/images/I/71nVIiWEcgL._AC_SY200_.jpg" alt="item" />
+      <img src={image} alt={name} />
       <div className="itemInfo">
         <h3>{name}</h3>
         <p>{price}</p>
