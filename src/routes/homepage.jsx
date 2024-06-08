@@ -28,7 +28,15 @@ export default function Homepage() {
       <div className="itemSelection">
         {itemSelection.length > 2 ? (
           itemSelection.map((item) => (
-            <Item name={item.title} price={item.price} quantity={item.quantity} key={item.id} image={item.image} description={item.description} />
+            <Item
+              name={item.title}
+              price={item.price}
+              quantity={item.quantity}
+              key={item.id}
+              image={item.image}
+              description={item.description}
+              quantityChange={item.quantityChange}
+            />
           ))
         ) : (
           <p>loading...</p>

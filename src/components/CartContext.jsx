@@ -32,6 +32,7 @@ export function CartProvider({ children }) {
   };
 
   const clearCart = () => {
+    console.log(cartItems);
     setCartItems([]);
     setTotalItemCount(0);
   };

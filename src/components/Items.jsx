@@ -1,20 +1,43 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../components/CartContext";
 
 export function Item({ name = "Placeholder", price = "0.00", description = "Placeholder", image, index }) {
   const { addItemToCart, removeFromCart, cartItems } = useContext(CartContext);
   const item = cartItems.find((i) => i.name === name) || { quantity: 0 };
+  const [inputValue, setInputValue] = useState(item.quantity);
 
-  const incrementCount = () => {
-    addItemToCart({ name, price });
+  useEffect(() => {
+    setInputValue(item.quantity);
+  }, [item.quantity]);
+
+  const onQuantityChange = (event) => {
+    const value = event.target.value;
+    const newQuantity = value === "" ? 0 : parseInt(value, 10);
+
+    if (!isNaN(newQuantity)) {
+      if (newQuantity !== inputValue) {
+        if (newQuantity > item.quantity) {
+          for (let i = 0; i < newQuantity - item.quantity; i++) {
+            addItemToCart({ name, price, image, description });
+          }
+        } else if (newQuantity < item.quantity) {
+          for (let i = 0; i < item.quantity - newQuantity; i++) {
+            removeFromCart({ name, price, image, description });
+          }
+        }
+      }
+    }
+    setInputValue(value);
+  };
+  const increaseCount = () => {
+    addItemToCart({ name, price, image, description });
   };
 
-  const decrementCount = () => {
+  const decreaseCount = () => {
     if (item.quantity > 0) {
-      removeFromCart({ name, price });
+      removeFromCart({ name, price, image, description });
     }
   };
-
   return (
     <div className="itemContainer" key={index}>
       <div className="homepageItemImage">
@@ -25,9 +48,9 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
         <p>${price}</p>
       </div>
       <div className="count">
-        <p>{item.quantity}</p>
-        <button onClick={incrementCount}>+</button>
-        <button onClick={decrementCount}>-</button>
+        <input type="text" value={inputValue} onChange={onQuantityChange} />
+        <button onClick={increaseCount}>+</button>
+        <button onClick={decreaseCount}>-</button>
       </div>
     </div>
   );
