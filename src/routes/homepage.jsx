@@ -1,25 +1,18 @@
+import logo from "../assets/ZKZg.gif";
 import { Item } from "../components/Items";
 import { useState, useContext, useEffect } from "react";
 import { CartContext } from "../components/CartContext";
+import { StoreContext } from "../components/StoreContext";
 
 export default function Homepage() {
   const { totalItemCount } = useContext(CartContext);
-  const [itemSelection, setItemSelection] = useState([{ Item }]);
+  const { storeItems } = useContext(StoreContext);
+  const [itemSelection, setItemSelection] = useState([]);
 
   useEffect(() => {
-    async function fetchStoreItems() {
-      try {
-        const source = await fetch("https://fakestoreapi.com/products");
-        const data = await source.json();
-        console.log(data);
-        setItemSelection(data);
-      } catch (error) {
-        console.error("Error fetching store items:", error);
-      }
-    }
+    setItemSelection(storeItems);
+  }, [storeItems]);
 
-    fetchStoreItems();
-  }, []);
   return (
     <div className="homepageContainer">
       <h1>Welcome!</h1>
@@ -39,7 +32,10 @@ export default function Homepage() {
             />
           ))
         ) : (
-          <p>loading...</p>
+          <div className="loading">
+            {" "}
+            <img src={logo} alt="loading.." />
+          </div>
         )}
       </div>
     </div>
