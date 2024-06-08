@@ -2,7 +2,11 @@ import { useContext } from "react";
 import { CartContext } from "../components/CartContext";
 
 export default function Cart() {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
+
+  const cartTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
 
   return (
     <div>
@@ -18,6 +22,8 @@ export default function Cart() {
           ))}
         </ul>
       )}
+      <h3> Your total is : ${cartTotal()}</h3>
+      <button onClick={clearCart}>Checkout</button>
     </div>
   );
 }
