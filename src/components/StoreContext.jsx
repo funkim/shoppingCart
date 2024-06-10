@@ -9,8 +9,12 @@ export function StoreProvider({ children }) {
       try {
         const source = await fetch("https://fakestoreapi.com/products");
         const data = await source.json();
-        console.log(data);
+        const menClothing = data.filter((index) => index.category === "men's clothing");
+        const jewelery = data.filter((index) => index.category === "jewelery");
+        const electronics = data.filter((index) => index.category === "electronics");
+        const womenClothing = data.filter((index) => index.category === "women's clothing");
         setStoreItems(data);
+        console.log(data);
       } catch (error) {
         console.error("Error fetching store items:", error);
       }
