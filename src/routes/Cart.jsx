@@ -32,6 +32,7 @@ export default function Cart() {
         <ul>
           {cartItems.map((item, index) => (
             <li key={index}>
+              <img src={item.image} />
               {item.name} - ${item.price} - <input type="text" value={item.quantity} onChange={(e) => onQuantityChange(item.name, e.target.value)} />{" "}
               - {item.description}
               {console.log(item)}
