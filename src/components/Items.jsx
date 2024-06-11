@@ -40,17 +40,15 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
   };
   return (
     <div className="itemContainer" key={index}>
-      <div className="homepageItemImage">
-        <img src={image} alt={name} />
-      </div>
-      <div className="itemInfo">
-        <h3>{name}</h3>
+      <img src={image} alt={name} />
+      <div className="info">
         <p>${price}</p>
+        <h3>{name}</h3>
       </div>
-      <div className="count">
-        <input type="text" value={inputValue} onChange={onQuantityChange} />
+      <div className="addToCart">
         <button onClick={increaseCount}>+</button>
         <button onClick={decreaseCount}>-</button>
+        <input type="text" value={inputValue} onChange={onQuantityChange} />
       </div>
     </div>
   );
