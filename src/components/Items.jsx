@@ -46,9 +46,9 @@ export function Item({ name = "Placeholder", price = "0.00", description = "Plac
         <h3>{name}</h3>
       </div>
       <div className="addToCart">
-        <button onClick={increaseCount}>+</button>
         <button onClick={decreaseCount}>-</button>
         <input type="text" value={inputValue} onChange={onQuantityChange} />
+        <button onClick={increaseCount}>+</button>
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ export default function Cart() {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
   return (
-    <div>
+    <div className="cart">
       <h1>Cart</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -32,9 +32,13 @@ export default function Cart() {
         <ul>
           {cartItems.map((item, index) => (
             <li key={index}>
-              <img src={item.image} />
-              {item.name} - ${item.price} - <input type="text" value={item.quantity} onChange={(e) => onQuantityChange(item.name, e.target.value)} />{" "}
-              - {item.description}
+              <div className="image">
+                <img src={item.image} />
+              </div>
+              <div className="info">
+                {item.name} - ${item.price} <input type="text" value={item.quantity} onChange={(e) => onQuantityChange(item.name, e.target.value)} />{" "}
+              </div>
+              <div className="description">{item.description}</div>
               {console.log(item)}
             </li>
           ))}

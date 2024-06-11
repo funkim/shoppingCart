@@ -12,7 +12,9 @@ export default function Layout() {
       <header>
         <nav>
           <NavLink to="/">
-            <Home width="60" height="60" alt="Home" className="page" />
+            <div className="svg-container">
+              <Home width="60" height="60" alt="Home" className="page" />
+            </div>
           </NavLink>
 
           <div className="title">
@@ -23,16 +25,42 @@ export default function Layout() {
             <div className="itemCount">
               <p>{totalItemCount}</p>{" "}
             </div>
-            <ShoppingLogo width="60" height="60" alt="Cart" className="page Cart" />
+            <div className="svg-container">
+              <ShoppingLogo width="60" height="60" alt="Cart" className="page Cart" />
+            </div>
           </NavLink>
           <NavLink to="help">
-            <Help width="60" height="60" alt="Help" className="page" />
+            <div className="svg-container">
+              <Help width="60" height="60" alt="Help" className="page" />
+            </div>
           </NavLink>
         </nav>
       </header>
       <main>
         <Outlet />
       </main>
+      <div className="footer-basic">
+        <footer>
+          <ul className="list-inline">
+            <li className="list-inline-item">
+              <a href="#">Home</a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">Services</a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">About</a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">Terms</a>
+            </li>
+            <li className="list-inline-item">
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+          <p className="copyright">Funkim © 2024</p>
+        </footer>
+      </div>
     </div>
   );
 }
